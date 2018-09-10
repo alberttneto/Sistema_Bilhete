@@ -2,6 +2,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 public class BDSimulado {
 
 	    //Atributos
@@ -80,6 +82,18 @@ public class BDSimulado {
 		}
 		
 		
+		public String getOpcao() {
+			String 	opcao = JOptionPane.showInputDialog("Escolha um opcao: \n" +
+					"1 - Info cliente por nome \n" +
+					"2 - Ligações do cliente por nome\n" +
+					"3 - Numero de ligações por UF\n" +
+					"4 - Cód ligações de UF diferentes\n" +
+					"5 - Conta do cliente\n" +
+					"6 - Sair.");
+			return opcao;
+		}
+		
+		
 		//Questão 2a retornar informações de um cliente fornecido seu nome.
 	    public String getInfoCliente(String nome) {
 	    	String info = "";
@@ -87,7 +101,10 @@ public class BDSimulado {
 	    	for (int i = 0; i < clientes.size(); i++) {
 	    		if (clientes.get(i).getNome().equals(nome)) {
 					info = "Nome: " + clientes.get(i).getNome() + 
-							"\nData Nascimento: " + clientes.get(i).getDataNasc() +
+							"\nData Nascimento: " + 
+							clientes.get(i).getDataNasc().getDayOfMonth() + "/" +
+							clientes.get(i).getDataNasc().getMonthValue() + "/" +
+							clientes.get(i).getDataNasc().getYear() +
 							"\nNumero telefone: " + clientes.get(i).getNumTel() +
 							"\nCidade: " + clientes.get(i).getCidade() + "-" + clientes.get(i).getUf();
 				}
@@ -137,7 +154,10 @@ public class BDSimulado {
 	    	for(int i = 0; i < this.ligacoes.size(); i++) {
 	    		if(this.ligacoes.get(i).getClientes().getNome().equals(nome)) {
 	    			ligacoes +=  "\n\n" +
-	    					"\nData e hora de inicio: " + this.ligacoes.get(i).getDataIni() +
+	    					"\nData e hora de inicio: " + 
+	    					this.ligacoes.get(i).getDataIni().getDayOfMonth() + "/" +
+	    					this.ligacoes.get(i).getDataIni().getMonthValue() + "/" +
+	    					this.ligacoes.get(i).getDataIni().getYear() +
 	    					"\nNúmero de destino: " + this.ligacoes.get(i).getNumDest() +
 	    					"\nCidade de destino: " + this.ligacoes.get(i).getCidadeDest() + 
 	    					"-" + this.ligacoes.get(i).getUFDest();
